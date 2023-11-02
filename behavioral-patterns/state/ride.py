@@ -2,23 +2,23 @@ from .ride_state import RideState
 
 
 class Ride:
-    _state = None
+    _ride_state = None
 
-    def __init__(self, state: RideState) -> None:
-        self.transition_to(state)
+    def __init__(self, ride_state: RideState) -> None:
+        self.transition_to(ride_state)
 
-    def transition_to(self, state: RideState) -> None:
-        self._state = state
-        self._state.ride = self
+    def transition_to(self, ride_state: RideState) -> None:
+        self._ride_state = ride_state
+        self._ride_state.ride = self
 
     def accept(self) -> None:
-        self._state.accept()
+        self._ride_state.accept()
 
     def start(self) -> None:
-        self._state.start()
+        self._ride_state.start()
 
     def end(self) -> None:
-        self._state.end()
+        self._ride_state.end()
 
     def cancel(self) -> None:
-        self._state.cancel()
+        self._ride_state.cancel()

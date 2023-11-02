@@ -1,14 +1,8 @@
 from unittest import TestCase
 
 from .ride import Ride
-from .ride_state import (
-    InvalidOperationError,
-    RideAccepted,
-    RideCanceled,
-    RideEnded,
-    RideRequested,
-    RideStarted,
-)
+from .ride_exception import InvalidOperationError
+from .ride_state import RideAccepted, RideCanceled, RideEnded, RideRequested, RideStarted
 
 
 class TestRide(TestCase):
@@ -20,11 +14,11 @@ class TestRide(TestCase):
 
     def test_requested_to_accepted(self) -> None:
         self.ride.accept()
-        self.assertIsInstance(self.ride._state, RideAccepted)
+        self.assertIsInstance(self.ride._ride_state, RideAccepted)
 
     def test_requested_to_canceled(self) -> None:
         self.ride.cancel()
-        self.assertIsInstance(self.ride._state, RideCanceled)
+        self.assertIsInstance(self.ride._ride_state, RideCanceled)
 
     def test_requested_to_started(self) -> None:
         with self.assertRaises(InvalidOperationError) as err:
@@ -39,12 +33,12 @@ class TestRide(TestCase):
     def test_accepted_to_started(self) -> None:
         self.ride.accept()
         self.ride.start()
-        self.assertIsInstance(self.ride._state, RideStarted)
+        self.assertIsInstance(self.ride._ride_state, RideStarted)
 
     def test_accepted_to_canceled(self) -> None:
         self.ride.accept()
         self.ride.cancel()
-        self.assertIsInstance(self.ride._state, RideCanceled)
+        self.assertIsInstance(self.ride._ride_state, RideCanceled)
 
     def test_accepted_to_accepted(self) -> None:
         self.ride.accept()
@@ -60,7 +54,7 @@ class TestRide(TestCase):
         self.ride.accept()
         self.ride.start()
         self.ride.end()
-        self.assertIsInstance(self.ride._state, RideEnded)
+        self.assertIsInstance(self.ride._ride_state, RideEnded)
 
     def test_started_to_accepted(self) -> None:
         self.ride.accept()
