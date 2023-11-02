@@ -1,15 +1,6 @@
 from dataclasses import dataclass
 
-from .subject_segment import (
-    CompetenciasComportamentaisHandler,
-    DesafiosContemporaneosHandler,
-    DisciplinaAssincronaDaGraduacaoPresencialHandler,
-    DisciplinaSemipresencialHandler,
-    GruposDeEstudosHandler,
-    MicrofundamentoHandler,
-    ProjetoHandler,
-    SegmentHandler,
-)
+from .subject_segment import Segmenter
 
 
 @dataclass
@@ -32,19 +23,5 @@ class Subject:
 
     @property
     def segment(self) -> str:
-        segment_handlers: list[SegmentHandler] = [
-            DisciplinaSemipresencialHandler(),
-            DisciplinaAssincronaDaGraduacaoPresencialHandler(),
-            MicrofundamentoHandler(),
-            ProjetoHandler(),
-            GruposDeEstudosHandler(),
-            CompetenciasComportamentaisHandler(),
-            DesafiosContemporaneosHandler(),
-        ]
-
-        for segment_handler in segment_handlers:
-            segment = segment_handler.handle(self)
-            if segment is not None:
-                return segment
-
-        return 'Bacharelado | Licenciatura'
+        segmenter = Segmenter()
+        return segmenter.handle(self)
