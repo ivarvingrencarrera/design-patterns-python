@@ -32,7 +32,9 @@ class SegmentHandler(Handler):
 
 class DisciplinaSemipresencialHandler(SegmentHandler):
     def handle(self, subject: Subject) -> str:
-        return 'Disciplina Semipresencial' if subject.subject_is_hybrid else super().handle(subject)
+        if subject.subject_is_hybrid:
+            return 'Disciplina Semipresencial'
+        return super().handle(subject)
 
 
 class DisciplinaAssincronaDaGraduacaoPresencialHandler(SegmentHandler):
@@ -89,5 +91,4 @@ class Segmenter:
             .set_next(CompetenciasComportamentaisHandler())
             .set_next(DesafiosContemporaneosHandler())
         )
-
         return disciplina_semipresencial.handle(subject)
