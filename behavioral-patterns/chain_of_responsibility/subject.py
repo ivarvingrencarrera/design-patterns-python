@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from .subject_segment import Segmenter
+from .subject_segment import SegmentFactory
 
 
 @dataclass
@@ -23,4 +23,4 @@ class Subject:
 
     @property
     def segment(self) -> str:
-        return Segmenter.handle(self)
+        return SegmentFactory.handler(self)

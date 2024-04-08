@@ -79,9 +79,9 @@ class DesafiosContemporaneosHandler(SegmentHandler):
         return super().handle(subject)
 
 
-class Segmenter:
+class SegmentFactory:
     @staticmethod
-    def handle(subject: Subject) -> str:
+    def handler(subject: Subject) -> str:
         disciplina_semipresencial = DisciplinaSemipresencialHandler()
         (
             disciplina_semipresencial.set_next(DisciplinaAssincronaDaGraduacaoPresencialHandler())
