@@ -23,5 +23,4 @@ class Subject:
 
     @property
     def segment(self) -> str:
-        segmenter = Segmenter()
-        return segmenter.handle(self)
+        return Segmenter.handle(self)
