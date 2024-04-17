@@ -17,7 +17,7 @@ class Handler(ABC):
         pass
 
 
-class SegmentHandler(Handler):
+class SubjectTypeHandler(Handler):
     _next_handler = None
 
     def set_next(self, handler: Handler) -> Handler:
@@ -27,59 +27,59 @@ class SegmentHandler(Handler):
     def handle(self, subject: Subject) -> str:
         if self._next_handler:
             return self._next_handler.handle(subject)
-        return 'Bacharelado | Licenciatura'   # Default Segment
+        return 'Bacharelado | Licenciatura'   # Default Subject Type
 
 
-class DisciplinaSemipresencialHandler(SegmentHandler):
+class DisciplinaSemipresencialHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
         if subject.subject_is_hybrid:
             return 'Disciplina Semipresencial'
         return super().handle(subject)
 
 
-class DisciplinaAssincronaDaGraduacaoPresencialHandler(SegmentHandler):
+class DisciplinaAssincronaDaGraduacaoPresencialHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
         if subject.course_id in (128, 2458):
             return 'Disciplina Assíncrona da Graduação Presencial'
         return super().handle(subject)
 
 
-class MicrofundamentoHandler(SegmentHandler):
+class MicrofundamentoHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
         if subject.subject_name.startswith('Microfundamento: '):
             return 'Microfundamento'
         return super().handle(subject)
 
 
-class ProjetoHandler(SegmentHandler):
+class ProjetoHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
         if subject.subject_name.startswith('Projeto: '):
             return 'Projeto'
         return super().handle(subject)
 
 
-class GruposDeEstudosHandler(SegmentHandler):
+class GruposDeEstudosHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
         if subject.subject_name.startswith('Grupos de Estudos'):
             return 'Grupos de Estudos'
         return super().handle(subject)
 
 
-class CompetenciasComportamentaisHandler(SegmentHandler):
+class CompetenciasComportamentaisHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
         if subject.subject_name.startswith('Competências Comportamentais: '):
             return 'Competências Comportamentais'
         return super().handle(subject)
 
 
-class DesafiosContemporaneosHandler(SegmentHandler):
+class DesafiosContemporaneosHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
         if subject.subject_name.startswith('Desafios Contemporâneos: '):
             return 'Desafios Contemporâneos'
         return super().handle(subject)
 
 
-class SegmentFactory:
+class SubjectType:
     @staticmethod
     def handler(subject: Subject) -> str:
         disciplina_semipresencial = DisciplinaSemipresencialHandler()

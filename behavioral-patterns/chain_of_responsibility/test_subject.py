@@ -26,36 +26,36 @@ class TestSubject(TestCase):
 
     def test_semipresencial(self) -> None:
         subject = self.create_subject(subject_is_hybrid=True)
-        self.assertEqual(subject.segment, 'Disciplina Semipresencial')
+        self.assertEqual(subject.subject_type, 'Disciplina Semipresencial')
 
     def test_assincrona(self) -> None:
         subject = self.create_subject(course_id=128)
-        self.assertEqual(subject.segment, 'Disciplina Assíncrona da Graduação Presencial')
+        self.assertEqual(subject.subject_type, 'Disciplina Assíncrona da Graduação Presencial')
 
     def test_microfundamento(self) -> None:
         subject = self.create_subject(subject_name='Microfundamento: Empreendedorismo e Negócios')
-        self.assertEqual(subject.segment, 'Microfundamento')
+        self.assertEqual(subject.subject_type, 'Microfundamento')
 
     def test_projeto(self) -> None:
         subject = self.create_subject(subject_name='Projeto: Empreendedorismo e Negócios')
-        self.assertEqual(subject.segment, 'Projeto')
+        self.assertEqual(subject.subject_type, 'Projeto')
 
     def test_grupos_de_estudos(self) -> None:
         subject = self.create_subject(subject_name='Grupos de Estudos: Empreendedorismo e Negócios')
-        self.assertEqual(subject.segment, 'Grupos de Estudos')
+        self.assertEqual(subject.subject_type, 'Grupos de Estudos')
 
     def test_competencias_comportamentais(self) -> None:
         subject = self.create_subject(
             subject_name='Competências Comportamentais: Empreendedorismo e Negócios'
         )
-        self.assertEqual(subject.segment, 'Competências Comportamentais')
+        self.assertEqual(subject.subject_type, 'Competências Comportamentais')
 
     def test_desafios_contemporaneos(self) -> None:
         subject = self.create_subject(
             subject_name='Desafios Contemporâneos: Empreendedorismo e Negócios'
         )
-        self.assertEqual(subject.segment, 'Desafios Contemporâneos')
+        self.assertEqual(subject.subject_type, 'Desafios Contemporâneos')
 
     def test_bacharelado_licenciatura(self) -> None:
         subject = self.create_subject()
-        self.assertEqual(subject.segment, 'Bacharelado | Licenciatura')
+        self.assertEqual(subject.subject_type, 'Bacharelado | Licenciatura')

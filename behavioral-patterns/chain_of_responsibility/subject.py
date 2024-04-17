@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from .subject_segment import SegmentFactory
+from .subject_type import SubjectType
 
 
 @dataclass
@@ -22,5 +22,5 @@ class Subject:
     synced_at_lms: bool
 
     @property
-    def segment(self) -> str:
-        return SegmentFactory.handler(self)
+    def subject_type(self) -> str:
+        return SubjectType.handler(self)
