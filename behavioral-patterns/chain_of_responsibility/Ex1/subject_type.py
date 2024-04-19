@@ -32,49 +32,49 @@ class SubjectTypeHandler(Handler):
 
 class DisciplinaSemipresencialHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
-        if subject.subject_is_hybrid:
+        if subject.is_disciplina_semipresencial():
             return 'Disciplina Semipresencial'
         return super().handle(subject)
 
 
 class DisciplinaAssincronaDaGraduacaoPresencialHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
-        if subject.course_id in (128, 2458):
+        if subject.is_disciplina_assincrona_da_graduacao_presencial():
             return 'Disciplina Assíncrona da Graduação Presencial'
         return super().handle(subject)
 
 
 class MicrofundamentoHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
-        if subject.subject_name.startswith('Microfundamento: '):
+        if subject.is_microfundamento():
             return 'Microfundamento'
         return super().handle(subject)
 
 
 class ProjetoHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
-        if subject.subject_name.startswith('Projeto: '):
+        if subject.is_projeto():
             return 'Projeto'
         return super().handle(subject)
 
 
 class GruposDeEstudosHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
-        if subject.subject_name.startswith('Grupos de Estudos'):
+        if subject.is_grupos_de_estudos():
             return 'Grupos de Estudos'
         return super().handle(subject)
 
 
 class CompetenciasComportamentaisHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
-        if subject.subject_name.startswith('Competências Comportamentais: '):
+        if subject.is_competencias_comportamentais():
             return 'Competências Comportamentais'
         return super().handle(subject)
 
 
 class DesafiosContemporaneosHandler(SubjectTypeHandler):
     def handle(self, subject: Subject) -> str:
-        if subject.subject_name.startswith('Desafios Contemporâneos: '):
+        if subject.is_desafios_contemporaneos():
             return 'Desafios Contemporâneos'
         return super().handle(subject)
 

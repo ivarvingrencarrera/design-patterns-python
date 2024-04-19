@@ -24,3 +24,24 @@ class Subject:
     @property
     def subject_type(self) -> str:
         return SubjectType.handler(self)
+
+    def is_disciplina_assincrona_da_graduacao_presencial(self):
+        return self.course_id in (128, 2458)
+
+    def is_disciplina_semipresencial(self):
+        return self.subject_is_hybrid
+
+    def is_microfundamento(self):
+        return self.subject_name.startswith('Microfundamento: ')
+
+    def is_projeto(self):
+        return self.subject_name.startswith('Projeto: ')
+
+    def is_grupos_de_estudos(self):
+        return self.subject_name.startswith('Grupos de Estudos')
+
+    def is_competencias_comportamentais(self):
+        return self.subject_name.startswith('Competências Comportamentais: ')
+
+    def is_desafios_contemporaneos(self):
+        return self.subject_name.startswith('Desafios Contemporâneos: ')
