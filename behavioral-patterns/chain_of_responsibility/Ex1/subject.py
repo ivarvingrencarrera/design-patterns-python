@@ -25,23 +25,23 @@ class Subject:
     def subject_type(self) -> str:
         return SubjectType.handler(self)
 
-    def is_disciplina_assincrona_da_graduacao_presencial(self):
+    def is_disciplina_assincrona_da_graduacao_presencial(self) -> bool:
         return self.course_id in (128, 2458)
 
-    def is_disciplina_semipresencial(self):
+    def is_disciplina_semipresencial(self) -> bool:
         return self.subject_is_hybrid
 
-    def is_microfundamento(self):
+    def is_microfundamento(self) -> bool:
         return self.subject_name.startswith('Microfundamento: ')
 
-    def is_projeto(self):
+    def is_projeto(self) -> bool:
         return self.subject_name.startswith('Projeto: ')
 
-    def is_grupos_de_estudos(self):
+    def is_grupos_de_estudos(self) -> bool:
         return self.subject_name.startswith('Grupos de Estudos')
 
-    def is_competencias_comportamentais(self):
+    def is_competencias_comportamentais(self) -> bool:
         return self.subject_name.startswith('Competências Comportamentais: ')
 
-    def is_desafios_contemporaneos(self):
+    def is_desafios_contemporaneos(self) -> bool:
         return self.subject_name.startswith('Desafios Contemporâneos: ')
